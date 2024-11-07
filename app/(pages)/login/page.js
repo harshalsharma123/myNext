@@ -65,5 +65,5 @@ function Page() {
     </div>
   );
 }
-// export default login;
-export default AuthWrapper(login);
+export default Page;
+// export default AuthWrapper(login);

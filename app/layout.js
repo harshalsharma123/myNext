@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <AuthWrapper>
+          {/* <AuthWrapper> */}
             <div>{children}</div>
-          </AuthWrapper>
+          {/* </AuthWrapper> */}
           <ToastContainer transition={Slide} />
         </ReduxProvider>
       </body>
