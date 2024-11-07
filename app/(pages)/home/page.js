@@ -1,8 +1,10 @@
 "use client";
+
+import privateWrapper from "@/authWrapper/privateWrapper";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function page() {
+function page() {
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
   console.log(isAuthenticated, "isAuthenticated home");
   return (
@@ -13,3 +15,4 @@ export default function page() {
     </div>
   );
 }
+export default privateWrapper(page);

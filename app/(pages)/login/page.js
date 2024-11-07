@@ -1,14 +1,13 @@
-// src/app/page.js
-"use client"; // Mark as Client Component
+"use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/navigation"; // for Next.js 13
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Toster from "@/toster/Toster";
 import { login } from "@/redux/slices/authSlice";
-import AuthWrapper from "@/authWrapper/AuthWrapper";
+import publicWrapper from "@/authWrapper/publicWrapper";
 
-function Page() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -65,5 +64,4 @@ function Page() {
     </div>
   );
 }
-export default Page;
-// export default AuthWrapper(login);
+export default publicWrapper(Login);

@@ -3,7 +3,7 @@ import "./globals.css";
 import ReduxProvider from "@/redux/reduxProvider";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AuthWrapper from "@/authWrapper/AuthWrapper";
+import Header from "./components/commonComponents/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,23 +29,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          {/* <AuthWrapper> */}
-            <div>{children}</div>
-          {/* </AuthWrapper> */}
+          <Header />
+          <div>{children}</div>
           <ToastContainer transition={Slide} />
         </ReduxProvider>
       </body>
     </html>
   );
 }
-
-// src/app/layout.js
-// import ReduxProvider from './ReduxProvider';
-
-// export default function Layout({ children }) {
-//   return (
-//     <ReduxProvider>
-//       <div>{children}</div>
-//     </ReduxProvider>
-//   );
-// }

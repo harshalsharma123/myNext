@@ -1,10 +1,13 @@
 "use client";
+
+import privateWrapper from "@/authWrapper/privateWrapper";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function page() {
+function page() {
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
-  console.log(isAuthenticated, "isAuthenticated home");
+  console.log(isAuthenticated, "isAuthenticated about-us");
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-xs p-8 bg-white shadow-md rounded-lg">
@@ -15,3 +18,4 @@ export default function page() {
     </div>
   );
 }
+export default privateWrapper(page);
