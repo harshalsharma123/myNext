@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 import { getCookie } from "cookies-next";
 
 export function middleware(req) {
-  const privateRoutes = ["/dashboard", "/profile", "/settings"];
+  const privateRoutes = ["/home", "/about"];
   const path = req.nextUrl.pathname;
 
   if (privateRoutes.includes(path)) {
     const isAuthenticated = getCookie("isAuthenticated", { req });
+    console.log(isAuthenticated, "isAuthenticated in middleware");
 
     if (!isAuthenticated) {
       const loginUrl = new URL("/login", req.url);
@@ -19,5 +20,5 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/profile", "/settings"],
+  matcher: ["/home", "/about"],
 };

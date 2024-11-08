@@ -4,9 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/slices/authSlice";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { pagesEndPoints } from "@/utils/Constant";
 
 export default function Header() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,7 +20,9 @@ export default function Header() {
   };
 
   const handleLogout = () => {
+    deleteCookie("isAuthenticated", { path: "/" }); // The path must match where the cookie was set
     dispatch(logout());
+    router.push(pagesEndPoints.LOGIN);
   };
 
   return (
@@ -32,10 +38,16 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-4">
-            <Link href="/" className="text-white hover:text-gray-300">
+            <Link
+              href={pagesEndPoints.HOME}
+              className="text-white hover:text-gray-300"
+            >
               Home
             </Link>
-            <Link href="/about" className="text-white hover:text-gray-300">
+            <Link
+              href={pagesEndPoints.ABOUT}
+              className="text-white hover:text-gray-300"
+            >
               About
             </Link>
             {isAuthenticated && (
@@ -80,14 +92,14 @@ export default function Header() {
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-600">
           <Link
-            href="/"
+            href={pagesEndPoints.HOME}
             className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700"
             onClick={toggleMenu} // Close menu when a link is clicked
           >
             Home
           </Link>
           <Link
-            href="/about"
+            href={pagesEndPoints.ABOUT}
             className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700"
             onClick={toggleMenu}
           >

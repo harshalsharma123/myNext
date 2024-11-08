@@ -1,17 +1,18 @@
 "use client";
 
-import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { getCookie } from "cookies-next";
+import { pagesEndPoints } from "@/utils/Constant";
 
 export default function privateWrapper(Component) {
   return function ProtectedRoute(props) {
     const router = useRouter();
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const isAuthenticated = getCookie("isAuthenticated");
 
     useEffect(() => {
       if (!isAuthenticated) {
-        router.push("/login");
+        router.push(pagesEndPoints.LOGIN);
       }
     }, [isAuthenticated, router]);
 

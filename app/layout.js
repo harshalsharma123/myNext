@@ -4,6 +4,7 @@ import ReduxProvider from "@/redux/reduxProvider";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/commonComponents/Header";
+import { LoaderProvider } from "@/contexts/LoaderContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,9 +30,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <Header />
-          <div>{children}</div>
-          <ToastContainer transition={Slide} />
+          <LoaderProvider>
+            <Header />
+            <div>{children}</div>
+            <ToastContainer transition={Slide} />
+          </LoaderProvider>
         </ReduxProvider>
       </body>
     </html>
